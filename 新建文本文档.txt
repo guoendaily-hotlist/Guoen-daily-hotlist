@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>TikTok 爆款标题生成器</title>
+<style>
+    body {
+        background: #000;
+        color: #ffd400;
+        font-family: Arial, Helvetica, sans-serif;
+        padding: 20px;
+    }
+    h1 {
+        text-align: center;
+        font-size: 32px;
+    }
+    textarea {
+        width: 100%;
+        height: 90px;
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 10px;
+        border: 2px solid #ffd400;
+        background: #111;
+        color: #fff;
+    }
+    button {
+        width: 100%;
+        padding: 15px;
+        margin-top: 10px;
+        font-size: 20px;
+        background: #ffd400;
+        border: none;
+        color: #000;
+        font-weight: bold;
+        cursor: pointer;
+        border-radius: 10px;
+    }
+    .box {
+        background: #111;
+        border: 2px solid #ffd400;
+        border-radius: 10px;
+        padding: 15px;
+        margin-top: 20px;
+    }
+    .title {
+        font-size: 22px;
+        margin-bottom: 10px;
+        color: #fff;
+    }
+    .output {
+        margin-bottom: 10px;
+        padding: 10px;
+        background: #000;
+        border-left: 5px solid #ffd400;
+    }
+</style>
+</head>
+
+<body>
+<h1>🔥 TikTok 爆款新闻标题生成器（强刺激版）</h1>
+
+<textarea id="input" placeholder="请输入你要生成标题的事件，例如：‘移民与警察爆发冲突’"></textarea>
+<button onclick="generate()">生成标题</button>
+
+<div id="results"></div>
+
+<script>
+function generate() {
+    const text = document.getElementById("input").value.trim();
+    if (!text) {
+        alert("请输入事件内容！");
+        return;
+    }
+
+    const results = document.getElementById("results");
+    results.innerHTML = "";
+
+    function box(title, arr) {
+        let html = `<div class='box'><div class='title'>${title}</div>`;
+        arr.forEach(t => {
+            html += `<div class='output'>${t}</div>`;
+        });
+        html += "</div>";
+        return html;
+    }
+
+    // 生成标题（强刺激 + 冲突 + 情绪）
+    const shockWords = ["爆了", "怒了", "失控", "大乱", "震惊全美", "场面失控"];
+    const engShock = ["BREAKING", "SHOCKING", "CHAOS", "ALERT", "CRITICAL", "WILD"];
+
+    function rand(arr) { return arr[Math.floor(Math.random()*arr.length)] }
+
+    // 1. 英文爆款标题
+    const engTitles = [
+        `${rand(engShock)}: ${text} sparks nationwide chaos.`,
+        `${rand(engShock)}: Massive fallout after ${text}.`,
+        `America shaken: ${text} triggers huge backlash.`,
+        `${text}? The situation just exploded.`,
+        `${text} — and now the whole country is boiling.`
+    ];
+
+    // 2. 中文爆款标题
+    const cnTitles = [
+        `${text}！现场直接${rand(shockWords)}！`,
+        `全美沸腾！${text} 引发巨大争议！`,
+        `离谱！${text} 现场彻底${rand(shockWords)}！`,
+        `${text} 惊动全国，场面火烧连环！`,
+        `美国乱了！${text} 引爆全场！`
+    ];
+
+    // 3. 超短封面标题
+    const shortTitles = [
+        `全美大乱`,
+        `现场失控`,
+        `惊天一幕`,
+        `混乱爆发`,
+        `突发大事件`
+    ];
+
+    // 4. 特朗普风挑衅标题
+    const trumpTitles = [
+        `Trump blasts opponents after ${text}!`,
+        `Trump: “This is a total disaster!” (${text})`,
+        `${text} — Trump says America deserves better.`
+    ];
+
+    // 5. Breaking 钩子式
+    const breakingTitles = [
+        `BREAKING: ${text}!`,
+        `URGENT: Major incident — ${text}.`,
+        `ALERT: Authorities respond to ${text}.`
+    ];
+
+    results.innerHTML += box("🔥 英文爆款标题", engTitles);
+    results.innerHTML += box("🔥 中文爆款标题", cnTitles);
+    results.innerHTML += box("🔥 封面短标题（8~12字）", shortTitles);
+    results.innerHTML += box("🔥 特朗普风标题", trumpTitles);
+    results.innerHTML += box("🔥 Breaking 钩子标题", breakingTitles);
+}
+</script>
+
+</body>
+</html>
